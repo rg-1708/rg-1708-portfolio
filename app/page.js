@@ -1,95 +1,105 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import Script from "next/script";
+import { useEffect } from "react";
+import gsapMainUrl from "../libs/gsap/gsap.min.js";
+import gsapScrollTriggerUrl from "../libs/gsap/ScrollTrigger.min.js";
+import gsapScrollSmootherUrl from "../libs/gsap/ScrollSmoother.min.js";
 
 export default function Home() {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    ScrollSmoother.create({
+      wrapper: ".wrapper",
+      content: ".content",
+      smooth: 1.2,
+    });
+  }, []);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <>
+      <Script src={gsapMainUrl} onLoad={() => {}} />
+      <Script src={gsapScrollTriggerUrl} onLoad={() => {}} />
+      <Script src={gsapScrollSmootherUrl} onLoad={() => {}} />
+
+      <div className="wrapper">
+        <div className="content">
+          <header className="hero-section">
+            <img
+              data-speed=".6"
+              className="hero"
+              src="img/hero.png"
+              alt="Alt"
             />
-          </a>
+            <div className="container">
+              <div data-speed=".75" className="main-header">
+                <h1 className="main-title">creative scroll</h1>
+              </div>
+            </div>
+          </header>
+
+          <div className="portfolio">
+            <div className="container">
+              <main className="gallery">
+                <div data-speed=".9" className="gallery__left">
+                  <img
+                    className="gallery__item"
+                    src="img/work/1.jpg"
+                    alt="Alt"
+                  />
+                  <img
+                    className="gallery__item"
+                    src="img/work/2.jpg"
+                    alt="Alt"
+                  />
+
+                  <div className="text-block gallery__item">
+                    <h2 className="text-block__h">
+                      Creative floating scroll with amazing parallax effect
+                    </h2>
+                    <p className="text-block__p">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor amount scrolling.
+                    </p>
+                  </div>
+
+                  <img
+                    className="gallery__item"
+                    src="img/work/6.jpg"
+                    alt="Alt"
+                  />
+                </div>
+
+                <div data-speed="1.1" className="gallery__right">
+                  <div className="text-block gallery__item">
+                    <h2 className="text-block__h">
+                      Creative floating scroll with amazing parallax effect
+                    </h2>
+                    <p className="text-block__p">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor amount scrolling.
+                    </p>
+                  </div>
+
+                  <img
+                    className="gallery__item"
+                    src="img/work/4.jpg"
+                    alt="Alt"
+                  />
+                  <img
+                    className="gallery__item"
+                    src="img/work/5.jpg"
+                    alt="Alt"
+                  />
+                  <img
+                    className="gallery__item"
+                    src="img/work/3.jpg"
+                    alt="Alt"
+                  />
+                </div>
+              </main>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
 }
