@@ -8,10 +8,42 @@ import gsapScrollSmootherUrl from "../libs/gsap/ScrollSmoother.min.js";
 export default function Home() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
     ScrollSmoother.create({
       wrapper: ".wrapper",
       content: ".content",
-      smooth: 1.2,
+      smooth: 1,
+      effects: true,
+    });
+    gsap.fromTo(
+      ".hero-section",
+      { opacity: 1 },
+      {
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "center",
+          end: "bottom",
+          scrub: true,
+        },
+        opacity: 0,
+      }
+    );
+    let itemSl = gsap.utils.toArray(".gallery__left .gallery__item");
+    itemSl.forEach((item) => {
+      gsap.fromTo(
+        item,
+        { opacity: 0, x: -50 },
+        {
+          scrollTrigger: {
+            trigger: item,
+            scrub: true,
+            start: "-850",
+            end: "-100",
+          },
+          opacity: 1,
+          x: 0,
+        }
+      );
     });
   }, []);
   return (
@@ -31,7 +63,7 @@ export default function Home() {
             />
             <div className="container">
               <div data-speed=".75" className="main-header">
-                <h1 className="main-title">creative scroll</h1>
+                <h1 className="main-title">Creative Scroll</h1>
               </div>
             </div>
           </header>

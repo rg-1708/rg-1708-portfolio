@@ -19,6 +19,7 @@ h5,
 h6 {
   font-family: "Outfit", sans-serif;
 }
+
 /* will-change */
 .content,
 .hero,
@@ -26,15 +27,19 @@ h6 {
 .gallery > * {
   will-change: transform;
 }
+
 body {
-  background-color: #191919;
-  background-image: url(/public/img/bg.jpg);
+  background: url(/img/bg.jpg);
   background-size: 50px;
   background-repeat: repeat;
   color: #fafafa;
   font-family: "Raleway", sans-serif;
   overflow-x: hidden;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .hero {
   width: calc(var(--index) * 36);
   position: absolute;
